@@ -2,11 +2,11 @@ require 'active_support/concern'
 
 module AddressConcern
   extend ActiveSupport::Concern
-  
+
   included do
     include Mongoid::Document
-    include Mongoid::Timestamps  
-    
+    include Mongoid::Timestamps
+
     embedded_in :office_location
 
     # The type of address
@@ -38,7 +38,7 @@ module AddressConcern
     field :country_name, type: String, default: ""
 
     validates_presence_of :address_1, :city, :state, :zip
-    
+
     validates :kind,
       inclusion: { in: KINDS + OFFICE_KINDS, message: "%{value} is not a valid address kind" },
       allow_blank: false
@@ -269,7 +269,7 @@ module AddressConcern
       self[attribute].to_s.downcase == other[attribute].to_s.downcase
     end
   end
-  
+
   class_methods do
     KINDS = %W(home work mailing)
     OFFICE_KINDS = %W(primary mailing branch)
