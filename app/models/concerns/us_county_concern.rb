@@ -1,6 +1,6 @@
 require 'active_support/concern'
 
-module UsCountiesConcern
+module UsCountyConcern
   extend ActiveSupport::Concern
 
   included do
